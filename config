@@ -203,7 +203,7 @@ font size == taller bar
 
 bindsym $mod+Shift+s exec gnome-screenshot -i -a
 
-# nitrogen | wallpaper manager
+# nitrogen for background.
 exec --no-startup-id nitrogen --restore
-# picom for transparent background
-exec picom
+# picom - composite manager for transparent backgrounds.
+exec --no-startup-id picom -b
