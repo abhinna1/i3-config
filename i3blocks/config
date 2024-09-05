@@ -1,0 +1,101 @@
+# Powerline separator config for visual design
+# [separator]
+# command=echo ""
+# interval=once
+# separator_block_width=0
+
+# [hostname]
+# label=
+# command=echo -n " $(hostname) "
+# interval=once
+# separator_block_width=15
+# color=#ff5555
+
+[datetime]
+label=
+command=date '+%a, %b %d, %H:%M:%S'
+interval=1
+separator_block_width=15
+color=#8be9fd
+align=center
+
+[cpu]
+label=
+command=top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8 "%"}'
+interval=5
+separator_block_width=15
+color=#ff79c6
+align=center
+
+[memory]
+label=󰍛
+command=free -m | awk '/Mem:/ {print int($3/$2 * 100.0)"% ("$3"MB/ "$2"MB)"}'
+interval=10
+separator_block_width=15
+color=#bd93f9
+align=center
+
+[disk]
+label=
+command=df -h / | awk 'NR==2 {print $5 " (" $3 "/" $2 ")"}'
+interval=60
+separator_block_width=15
+color=#50fa7b
+align=center
+
+[network]
+label=
+command=iwgetid -r
+interval=30
+separator_block_width=15
+color=#ffb86c
+align=center
+
+# [ip]
+# label=
+# command=ip -4 addr show $(ip route | grep '^default' | awk '{print $5}') | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+# interval=60
+# separator_block_width=15
+# color=#f1fa8c
+# align=center
+
+[volume]
+label=
+command=pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1
+interval=1
+separator_block_width=15
+color=#f1fa8c
+align=center
+
+[battery]
+label=
+command=bash -c 'status=$(acpi -b | awk "{print \$3}" | sed "s/,//"); percentage=$(acpi -b | awk -F", " "{print \$2}" | awk "{print \$1}"); if [ "$status" = "Charging" ]; then echo "🔌 $percentage"; else echo " $percentage"; fi'
+interval=1
+separator_block_width=15
+color=#8be9fd
+align=center
+
+# [spotify]
+# label=
+# command=playerctl metadata --format '{{ artist }} - {{ title }}' 2>/dev/null
+# interval=5
+# separator_block_width=15
+# color=#50fa7b
+# align=center
+
+# [window_title]
+# label=
+# command=xprop -id $(xdotool getactivewindow) _NET_WM_NAME | cut -d\" -f2
+# interval=1
+# separator_block_width=15
+# color=#f8f8f2
+# align=center
+
+[weather]
+label=
+command=curl -s wttr.in/?format="%C+%t"
+interval=1800
+separator_block_width=15
+color=#ff79c6
+align=center
+
